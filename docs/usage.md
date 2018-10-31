@@ -124,6 +124,14 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 
 **Hint:** You can also define a custom function for the logging part. Just pass a function. The first parameter will be the string that is logged.
 
+To enable more informative stack traces, configure the Bluebird promise library to provide long stack traces:
+
+```js
+Sequelize.Promise.config({
+  longStackTraces: true
+});
+```
+
 ## Read replication
 
 Sequelize supports read replication, i.e. having multiple servers that you can connect to when you want to do a SELECT query. When you do read replication, you specify one or more servers to act as read replicas, and one server to act as the write master, which handles all writes and updates and propagates them to the replicas (note that the actual replication process is **not** handled by Sequelize, but should be set up by database backend).
